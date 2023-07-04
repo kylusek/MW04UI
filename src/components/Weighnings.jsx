@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import '../styles/main.scss'
+import '../styles/weighnings.scss'
 
 export default function Weighnings() {
 	const [posts, setPosts] = useState([]);
@@ -15,11 +17,11 @@ export default function Weighnings() {
 			});
 	})
 	return (
-		<>
-			<p>{Object.values(posts.Weighnings.one.name)} {Object.values(posts.Weighnings.one.weight)} {Object.values(posts.Weighnings.one.unit)}</p>
-			<p>{Object.values(posts.Weighnings.two.name)} {Object.values(posts.Weighnings.two.weight)} {Object.values(posts.Weighnings.two.unit)}</p>
-			<p>{Object.values(posts.Weighnings.three.name)} {Object.values(posts.Weighnings.three.weight)} {Object.values(posts.Weighnings.three.unit)}</p>
-			<p>{Object.values(posts.Weighnings.four.name)} {Object.values(posts.Weighnings.four.weight)} {Object.values(posts.Weighnings.four.unit)}</p>
-		</>
+		<div className='scales'>
+			<p><h2>{Object.values(posts.Weighnings.one.name)}</h2> {Object.values(posts.Weighnings.one.weight)} {Object.values(posts.Weighnings.one.unit)}</p>
+			<p><h2>{Object.values(posts.Weighnings.two.name)}</h2> {Object.values(posts.Weighnings.two.weight)} {Object.values(posts.Weighnings.two.unit)}</p>
+			<p><h2>{Object.values(posts.Weighnings.three.name)}</h2> {Object.values(posts.Weighnings.three.weight)} {Object.values(posts.Weighnings.three.unit)}</p>
+			<p><h2>{Object.values(posts.Weighnings.four.name)}</h2> {Object.values(posts.Weighnings.four.weight)} {Object.values(posts.Weighnings.four.unit)}</p>
+		</div>
 	)
 }

@@ -1,0 +1,12 @@
+@import "main";
+
+.scales {
+  background-color: $mid;
+  border: 3px solid $fontcolor;
+  border-radius: 2em;
+  margin: {
+    top: 1em;
+  }
+  text-align: center;
+  width: 10%;
+}
