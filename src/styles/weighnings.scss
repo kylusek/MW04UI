@@ -2,11 +2,15 @@
 
 .scales {
   background-color: $mid;
-  border: 3px solid $fontcolor;
-  border-radius: 2em;
-  margin: {
-    top: 1em;
-  }
+  border: 0.2em solid $fontcolor;
+  border-radius: 1em;
+  box-sizing: border-box;
+  float: left;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  min-height: 87.5vh;
+  margin-top: 0.2em;
+  padding: 0.5em;
   text-align: center;
-  width: 10%;
+  width: 100%;
 }

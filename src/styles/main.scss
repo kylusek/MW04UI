@@ -2,11 +2,15 @@ $fontcolor: #DA0037;
 $darkest: #171717;
 $lightest: #EDEDED;
 $mid: #444444;
+$gray: #b3b3b3;
 
 body {
   background-color: $darkest;
-  color: #fff;
+  box-sizing: border-box;
+  color: $lightest;
+  margin-top: 0;
 }
 * {
   font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
