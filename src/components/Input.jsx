@@ -1,13 +1,7 @@
 import '../styles/input.scss'
-import { useState } from "react";
 
 export default function Input(props) {
 	function clickHandler() {
-		let min = document.getElementById("min").value
-		let max = document.getElementById("max").value
-		props.setIsOpen(false)
-	}
-	function closeClickHandler() {
 		props.setIsOpen(false)
 	}
 
