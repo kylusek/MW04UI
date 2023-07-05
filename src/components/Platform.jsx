@@ -26,8 +26,8 @@ export default function Platform(props) {
 		<div className='platform'>
 			<h3>Platform {props.count}</h3>
 			<p style={{
-				/*'backgroundColor':`${backColor}`,
-				'border':`0.35em solid ${borderColor}`*/
+				'backgroundColor':`#00b300`,
+				'border':`0.35em solid green`
 			}} className='pWeight'>{prop.weight} {prop.unit}</p>
 		</div>
 	)

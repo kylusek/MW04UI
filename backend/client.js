@@ -64,7 +64,8 @@ app.get('/db', (req, res) => {
     res.send(JSON.stringify(object))
     res.end()
 })
- 
-const server = app.listen(1000, () => {
+
+// eslint-disable-next-line no-unused-vars
+app.listen(1000, () => {
     console.log('App is running on port 1000')
-})
+});
