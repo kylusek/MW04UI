@@ -7,12 +7,12 @@ let data = ''
 let object = {Scales: []}
 let weights = []
 let units = []
-let i = 0;
+
 let temp1 = {}
 
-adresses.ips.forEach(ip => {
+for(let i=0; i<adresses.ips.length; i++){
     const client = new net.Socket()
-    client.connect(ip.port, ip.ip, () => {
+    client.connect(adresses.ips[i].port, adresses.ips[i].ip, () => {
         console.log('connected')
         setInterval(() => {
             client.write('SIA\r\n')
@@ -39,8 +39,6 @@ adresses.ips.forEach(ip => {
             object.Scales[i] = temp1
             if (i === adresses.ips.length-1) {
                 i = 0
-            } else {
-                i++
             }
             client.on('error', (err) => {
                 console.log(err)
@@ -50,7 +48,7 @@ adresses.ips.forEach(ip => {
             })
         })
     })
-})
+}
 
 const app = express()
 
@@ -63,7 +61,6 @@ app.get('/db', (req, res) => {
     res.end()
 })
 
-// eslint-disable-next-line no-unused-vars
 app.listen(1000, () => {
     console.log('App is running on port 1000')
 });

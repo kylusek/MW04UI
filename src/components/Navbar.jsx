@@ -8,7 +8,12 @@ export default function Navbar(props) {
 	return (
 		<div className='ownNavbar'>
 			<p>Set number of columns</p>
-			<input type='number' id='colCounter' placeholder='4 to 9' min='4' max='9'/>
+			<input type='number'
+				   id='colCounter'
+				   placeholder='4 to 9'
+				   min='4'
+				   max='9'
+			/>
 			<button onClick={colCount}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					 className="bi bi-check-lg" viewBox="0 0 16 16">

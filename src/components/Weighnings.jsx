@@ -11,7 +11,6 @@ export default function Weighnings(props) {
 			.then(res => res.json())
 			.then((data) => {
 				setPosts(data);
-				console.log(posts.Scales[0].Weighnings[0].weight);
 			})
 			.catch((err) => {
 				console.log(err.message);
