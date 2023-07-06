@@ -1,3 +1,4 @@
+require('events').EventEmitter.prototype._maxListeners = 10000;
 const net = require('net')
 let adresses = require('./ips.json')
 const express = require('express')
@@ -7,6 +8,7 @@ let object = {Scales: []}
 let weights = []
 let units = []
 let i = 0;
+let temp1 = {}
 
 adresses.ips.forEach(ip => {
     const client = new net.Socket()
@@ -25,7 +27,7 @@ adresses.ips.forEach(ip => {
             units[2] = data.slice(55, 59).replace(/\s+/g, '')
             weights[3] = data.slice(65, 75).replace(/\s+/g, '')
             units[3] = data.slice(75, 79).replace(/\s+/g, '')
-            let temp1 = {
+            temp1 = {
                 id: i,
                 Weighnings: [
                     {id: 1, weight: weights[0], unit: units[0]},

@@ -1,4 +1,7 @@
+@import 'scale';
+
 h3 {
+  display: inline;
   margin: 0.5em;
   font-size: 1.2em;
 }
@@ -8,5 +11,11 @@ p{
   color: black;
   font-weight: bold;
   margin: 0;
+  padding: 0.5em;
+}
+.platform {
+  @include border;
+  background-color: #404040;
+  margin: 0.5em;
   padding: 0.5em;
 }

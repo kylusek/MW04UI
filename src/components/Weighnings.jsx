@@ -3,7 +3,7 @@ import '../styles/main.scss'
 import '../styles/weighnings.scss'
 import Scale from '../components/Scale'
 
-export default function Weighnings() {
+export default function Weighnings(props) {
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
@@ -11,14 +11,16 @@ export default function Weighnings() {
 			.then(res => res.json())
 			.then((data) => {
 				setPosts(data);
-				console.log(data);
+				console.log(posts.Scales[0].Weighnings[0].weight);
 			})
 			.catch((err) => {
 				console.log(err.message);
 			});
 	})
 	return (
-		<div className='scales'>
+		<div className='scales' style={{
+			gridTemplateColumns: `repeat(${props.columnCount}, 1fr)`
+		}}>
 			{posts.Scales?.map((post, i) => {
 				return (
 					<Scale post={post} count={i+1}/>

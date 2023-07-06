@@ -5,10 +5,13 @@ import NavBar from "./components/Navbar";
 import './styles/main.scss'
 
 export default function App() {
+	const [columnCount, setColumnCount] = useState(6);
+
 	return (
 		<>
 			<Header />
-			<Weighnings />
+			<NavBar columnCount={setColumnCount}/>
+			<Weighnings columnCount={columnCount}/>
 		</>
 	)
 }

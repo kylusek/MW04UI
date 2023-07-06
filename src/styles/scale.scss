@@ -1,9 +1,13 @@
 @import "main";
 
-.scale {
-  background-color: #303030;
+@mixin border {
   border: 0.2em solid $gray;
   border-radius: 1em;
+}
+
+.scale {
+  background-color: #303030;
+  @include border;
   box-sizing: border-box;
   height: max-content;
   margin: 0.5em;
@@ -14,7 +18,7 @@ h2 {
   margin: 0.001em;
 }
 button {
-  background-color: $mid;
+  background-color: #666666;
   border-radius: 1em;
   color: $lightest;
   margin-top: 0.5em;

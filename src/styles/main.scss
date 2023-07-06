@@ -1,3 +1,7 @@
+@mixin mainBorder {
+  border: 0.2em solid $fontcolor;
+}
+
 $fontcolor: #DA0037;
 $darkest: #171717;
 $lightest: #EDEDED;
