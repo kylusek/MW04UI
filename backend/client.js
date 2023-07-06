@@ -35,14 +35,10 @@ adresses.ips.forEach(ip => {
                 ]
             }
             object.Scales[i] = temp1
-            object.Scales[i+1] = temp1
-            object.Scales[i+2] = temp1
-            object.Scales[i+3] = temp1
-            object.Scales[i+4] = temp1
-            if (i === adresses.ips.length * 5 - 5) {
+            if (i === adresses.ips.length-1) {
                 i = 0
             } else {
-                i = i + 5
+                i++
             }
             client.on('error', (err) => {
                 console.log(err)
