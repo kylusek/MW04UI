@@ -9,9 +9,9 @@ let units = []
 
 let temp1 = {}
 
-for(let i=0; i<adresses.ips.length; i++){
+for(let i=1; i<=adresses.ips.length; i++){
     const client = new net.Socket()
-    client.connect(adresses.ips[i].port, adresses.ips[i].ip, () => {
+    client.connect(adresses.ips[i-1].port, adresses.ips[i-1].ip, () => {
         console.log('connected')
         setInterval(() => {
             client.write('SIA\r\n')
@@ -36,7 +36,7 @@ for(let i=0; i<adresses.ips.length; i++){
                 ]
             }
             object.Scales[i] = temp1
-            if (i === adresses.ips.length-1) {
+            if (i === adresses.ips.length) {
                 i = 0
             }
             client.on('error', (err) => {
