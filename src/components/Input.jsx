@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 export default function Input(props) {
 	const [actMin, setActMin] = useState();
 	const [actMax, setActMax] = useState();
+	const minPlaceholder = actMin + props.unit;
+	const maxPlaceholder = actMax + props.unit;
 
 	function clickHandler() {
 		const min = parseFloat(document.getElementById('min').value)
@@ -47,9 +49,9 @@ export default function Input(props) {
 	return (
 		<div className='input'>
 			<h4>Min weight</h4>
-			<input type='text' id='min' placeholder={props.actMin}/>
+			<input type='text' id='min' placeholder={minPlaceholder}/>
 			<h4>Max weight</h4>
-			<input type='text' id='max' placeholder={props.actMax}/> <br></br>
+			<input type='text' id='max' placeholder={maxPlaceholder}/> <br></br>
 			<button onClick={clickHandler}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					 className="bi bi-check-lg" viewBox="0 0 16 16">
