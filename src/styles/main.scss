@@ -9,10 +9,15 @@ $mid: #444444;
 $gray: #b3b3b3;
 
 body {
+  -ms-overflow-style: none;
   background-color: $darkest;
   box-sizing: border-box;
   color: $lightest;
   margin-top: 0;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 * {
   font-family: 'Roboto', sans-serif;
