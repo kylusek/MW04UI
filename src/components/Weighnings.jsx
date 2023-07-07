@@ -12,7 +12,6 @@ export default function Weighnings() {
 			.then((data) => {
 				data.Scales.shift()
 				setPosts(data);
-				console.log(data.Scales[0].Weighnings[0].weight);
 			})
 			.catch((err) => {
 				console.log(err.message);
