@@ -5,12 +5,13 @@ import Scale from '../components/Scale'
 
 export default function Weighnings(props) {
 	const [posts, setPosts] = useState([]);
+	const arr = [1, 2, 3, 4, 5, 6]
 
 	useEffect(() => {
 		fetch("http://localhost:1000/db")
 			.then(res => res.json())
 			.then((data) => {
-				data.Scales.shift();
+				const shifted = data.Scales.shift();
 				setPosts(data);
 			})
 			.catch((err) => {
