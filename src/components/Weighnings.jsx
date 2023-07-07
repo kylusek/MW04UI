@@ -10,8 +10,8 @@ export default function Weighnings(props) {
 		fetch("http://localhost:1000/db")
 			.then(res => res.json())
 			.then((data) => {
+				data.Scales.shift()
 				setPosts(data);
-				console.log(data.Scales[0].Weighnings[0].weight, data.Scales[0].Weighnings[1].weight);
 			})
 			.catch((err) => {
 				console.log(err.message);
