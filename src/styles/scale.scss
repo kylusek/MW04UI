@@ -17,19 +17,3 @@ h2 {
   font-size: 2em;
   margin: 0.001em;
 }
-button {
-  background-color: #8c8c8c;
-  border-radius: 1em;
-  color: $lightest;
-  margin-top: 0.5em;
-  padding: {
-    bottom: 0.25em;
-    left: 0.5em;
-    right: 0.5em;
-    top: 0.4em;
-  }
-}
-button>svg {
-  height: 2.5em;
-  width: 2.5em;
-}
