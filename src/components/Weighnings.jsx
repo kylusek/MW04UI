@@ -10,8 +10,14 @@ export default function Weighnings() {
 		fetch("http://localhost:1000/db")
 			.then(res => res.json())
 			.then((data) => {
-				data.Scales.shift()
-				setPosts(data);
+				const length = data.Scales.length;
+				if(length > 1) {
+					data.Scales.shift()
+				}
+				else {
+					data.Scales.pop()
+				}
+				setPosts(data)
 			})
 			.catch((err) => {
 				console.log(err.message);

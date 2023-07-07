@@ -15,7 +15,7 @@ for(let i=1; i<=adresses.ips.length; i++){
         console.log('connected')
         setInterval(() => {
             client.write('SIA\r\n')
-        }, 200)
+        }, 100)
         client.on('data', (result) => {
             data = result.toString().trim()
             weights[0] = data.slice(5, 15).replace(/\s+/g, '')
