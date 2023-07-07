@@ -47,15 +47,17 @@ export default function Settings(props) {
 				</svg>
 			</button>
             <ReactModal
+				ariaHideApp={false}
                 isOpen={modalIsOpen}
                 className="modal"
             >
                 <div className="modal-content">
                     <h2>Settings</h2>
-					<Input setIsOpen={setIsOpen}
+					<Input
+						   isSub={setIsSub}
+						   setIsOpen={setIsOpen}
 						   setMax={setMax}
 						   setMin={setMin}
-						   isSub={setIsSub}
 						   unit={props.unit}
 						   actMin={min}
 						   actMax={max}
