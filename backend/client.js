@@ -65,11 +65,9 @@ app.get('/db', (req, res) => {
 })
 
 app.post('/new-connection', (req, res) => {
-    adresses.ips.push({
-        ip: req.body.ip,
-        port: req.body.port
-    })
-    res.end()
+    const ip = req.body.ip
+    const port = req.body.port
+    console.log(ip, port)
 })
 
 app.listen(1000, () => {

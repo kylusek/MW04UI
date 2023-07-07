@@ -13,7 +13,7 @@ export default function Navbar() {
                 port: document.getElementById("port").value
             })
 		}
-		fetch('http://127.0.0.1:1001/new-connection', requestOptions)
+		fetch('http://127.0.0.1:2000/', requestOptions)
 			.then(response => response.json())
             .then(data => console.log(data))
 		document.getElementById("ip").value = "";
