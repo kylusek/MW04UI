@@ -11,7 +11,7 @@ export default function Weighnings() {
 			.then(res => res.json())
 			.then((data) => {
 				const length = data.Scales.length;
-				if(length > 1) {
+				if(length > 2) {
 					data.Scales.shift()
 				}
 				else {
