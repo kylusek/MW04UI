@@ -46,12 +46,10 @@ export default function Input(props) {
 
 	return (
 		<div className='input'>
-			<h4>Minimum weight</h4>
-			<input type='text' id='min' placeholder='Minimum'/>
-			<h4>Maximum weight</h4>
-			<input type='text' id='max' placeholder='Maximum'/> <br></br>
-			<p className='actMNX'>Actual minimum: {props.actMin} {props.unit}</p>
-			<p className='actMNX'>Actual maximum: {props.actMax} {props.unit}</p>
+			<h4>Min weight</h4>
+			<input type='text' id='min' placeholder={props.actMin}/>
+			<h4>Max weight</h4>
+			<input type='text' id='max' placeholder={props.actMax}/> <br></br>
 			<button onClick={clickHandler}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					 className="bi bi-check-lg" viewBox="0 0 16 16">

@@ -1,4 +1,3 @@
-require('events').EventEmitter.prototype._maxListeners = 10000;
 const net = require('net')
 let adresses = require('./ips.json')
 const express = require('express')
