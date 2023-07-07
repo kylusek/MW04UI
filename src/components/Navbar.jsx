@@ -1,5 +1,4 @@
 import '../styles/navbar.scss'
-import {useState} from "react";
 
 export default function Navbar() {
 
