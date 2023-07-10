@@ -1,23 +1,40 @@
-const net = require('net')
-let adresses = require('./ips.json')
-const express = require('express')
-const cors = require('cors')
-let data = ''
-let object = {Scales: []}
+const net = require('net');
+const express = require('express');
+const cors = require('cors');
+const app = express();
+let data = '';
 let weights = []
 let units = []
 let isStab = []
-let temp1 = {}
+let temp = {}
+let object = {
+    Scales: []
+}
+let connectionCount = 0;
+let closeIp = null;
+let closePort = null;
+let idTab = []
+let delCount = 0;
 
-for(let i=1; i<=adresses.ips.length; i++){
-    const client = new net.Socket()
-    client.connect(adresses.ips[i-1].port, adresses.ips[i-1].ip, () => {
-        console.log('connected')
+app.use(cors());
+app.use(express.json());
+
+app.post('/', (req, res) => {
+    const client = new net.Socket();
+    const ip = req.body.ip;
+    const port = req.body.port;
+    client.connect(port, ip, () => {
+        console.log(`connected to ${req.body.ip}:${req.body.port}`);
+        connectionCount++;
+        const index = connectionCount-1
+        idTab[index] = connectionCount - delCount
+        let id = null;
         setInterval(() => {
-            client.write('SIA\r\n')
-        }, 100)
+            id = idTab[index]
+            client.write('SIA\r\n');
+        }, 100);
         client.on('data', (result) => {
-            data = result.toString().trim()
+            data = result.toString().trim();
             weights[0] = data.slice(5, 15).replace(/\s+/g, '')
             units[0] = data.slice(15, 19).replace(/\s+/g, '')
             isStab[0] = data[3]
@@ -30,8 +47,10 @@ for(let i=1; i<=adresses.ips.length; i++){
             weights[3] = data.slice(65, 75).replace(/\s+/g, '')
             units[3] = data.slice(75, 79).replace(/\s+/g, '')
             isStab[3] = data[63]
-            temp1 = {
-                id: i,
+            temp = {
+                id: id,
+                ip: req.body.ip,
+                port: req.body.port,
                 Weighnings: [
                     {id: 1, weight: weights[0], unit: units[0], isStab: isStab[0]},
                     {id: 2, weight: weights[1], unit: units[1], isStab: isStab[1]},
@@ -39,37 +58,34 @@ for(let i=1; i<=adresses.ips.length; i++){
                     {id: 4, weight: weights[3], unit: units[3], isStab: isStab[3]}
                 ]
             }
-            object.Scales[i] = temp1
-            if (i === adresses.ips.length) {
-                i = 0
+            object.Scales[id-1] = temp;
+            if(closeIp === ip && closePort === port){
+                client.destroy();
+                closeIp = null;
+                delCount++;
+                object.Scales.pop()
+                for(let i = index; i < connectionCount; i++){
+                    idTab[i] -= 1
+                }
+                console.log(`disconnected from ${req.body.ip}:${req.body.port}`)
             }
-            client.on('error', (err) => {
-                console.log(err)
-            })
-            client.on('close', () => {
-                console.log('conn closed')
-            })
-        })
+        });
+    });
+    client.on('error', (err) => {
+        console.log(err);
     })
-}
-
-const app = express()
-
-app.use(cors())
-app.use(express.json())
-
-app.get('/db', (req, res) => {
-    res.set('Content-Type', 'application/json')
-    res.send(JSON.stringify(object))
-    res.end()
 })
 
-app.post('/new-connection', (req, res) => {
-    const ip = req.body.ip
-    const port = req.body.port
-    console.log(ip, port)
+app.post('/update', (req, res) => {
+    closeIp = req.body.ip;
+    closePort = req.body.port
 })
 
-app.listen(1000, () => {
-    console.log('App is running on port 1000')
-});
+app.get('/', (req, res) => {
+    res.set('Content-Type', 'application/json');
+    res.send(JSON.stringify(object));
+})
+
+app.listen(2000, () => {
+    console.log('listening on port 2000');
+})

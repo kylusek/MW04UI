@@ -1,23 +1,48 @@
 import '../styles/navbar.scss'
 
-export default function Navbar() {
-
+export default function Navbar(props) {
 	const clickHandler = () => {
+		const requestOptions = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				ip: document.getElementById('ip').value,
+				port: document.getElementById('port').value
+			})
+		}
+
+		fetch('http://127.0.0.1:2000/', requestOptions)
+			.then(response => response.json())
+
+		document.getElementById('ip').value = "";
+		document.getElementById('port').value = "";
+
+		if(props.isEmpty) {
+			setTimeout(() => {
+				window.location.reload();
+			}, 75)
+		}
+	}
+
+	const disconnect = () => {
 		const requestOptions = {
 			method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                ip: document.getElementById("ip").value,
-                port: document.getElementById("port").value
+                deleteAll: true
             })
 		}
-		fetch('http://127.0.0.1:2000/', requestOptions)
+
+        fetch('http://127.0.0.1:2000/delete', requestOptions)
 			.then(response => response.json())
-            .then(data => console.log(data))
-		document.getElementById("ip").value = "";
-		document.getElementById("port").value = "";
+
+		setTimeout(() => {
+			window.location.reload();
+		}, 50)
 	}
 
 	return (
@@ -26,7 +51,7 @@ export default function Navbar() {
 			<input type='text' id='ip' placeholder='0.0.0.0'/>
 			<p>Port: </p>
 			<input type='text' id='port' placeholder='8080'/>
-			<button onClick={clickHandler}>
+			<button onClick={() => {clickHandler()}}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					 className="bi bi-plus-circle" viewBox="0 0 16 16">
 					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>

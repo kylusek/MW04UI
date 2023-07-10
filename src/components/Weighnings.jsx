@@ -1,35 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import '../styles/main.scss'
 import '../styles/weighnings.scss'
 import Scale from '../components/Scale'
 
-export default function Weighnings() {
+export default function Weighnings(props) {
 	const [posts, setPosts] = useState([]);
+	const [render, setRender] = useState(false);
+	const [scaleDelete, setDelete] = useState(false);
 
-	useEffect(() => {
-		fetch("http://localhost:1000/db")
-			.then(res => res.json())
-			.then((data) => {
-				const length = data.Scales.length;
-				if(length > 2) {
-					data.Scales.shift()
-				}
-				else {
-					data.Scales.pop()
-				}
+	fetch("http://localhost:2000/")
+		.then(res => res.json())
+		.then((data) => {
+			if (data.Scales.length !== 0) {
 				setPosts(data)
+				setRender(true)
+				props.isEmpty(false)
+			}
+			else {
+				props.isEmpty(true)
+			}
+			//console.log(data.Scales.length);
+		})
+
+	const renderScales = () => {
+		return (
+			posts.Scales?.map((post, i) => {
+				return (
+					<>
+					{scaleDelete ? null : <Scale key={post.id} post={post} count={i+1} delete={setDelete} />}
+					</>
+				)
 			})
-			.catch((err) => {
-				console.log(err.message);
-			});
-	})
+		)
+	}
+
 	return (
 		<div className='scales'>
-			{posts.Scales?.map((post, i) => {
-				return (
-					<Scale key={post.id} post={post} count={i+1}/>
-				)
-			})}
+			{render ? renderScales() : null}
 		</div>
 	)
 }
