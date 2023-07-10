@@ -26,25 +26,6 @@ export default function Navbar(props) {
 		}
 	}
 
-	const disconnect = () => {
-		const requestOptions = {
-			method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                deleteAll: true
-            })
-		}
-
-        fetch('http://127.0.0.1:2000/delete', requestOptions)
-			.then(response => response.json())
-
-		setTimeout(() => {
-			window.location.reload();
-		}, 50)
-	}
-
 	return (
 		<div className='ownNavbar'>
 			<p>Ip: </p>

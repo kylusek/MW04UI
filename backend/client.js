@@ -19,7 +19,7 @@ let delCount = 0;
 app.use(cors());
 app.use(express.json());
 
-app.post('/', (req, res) => {
+app.post('/', (req) => {
     const client = new net.Socket();
     const ip = req.body.ip;
     const port = req.body.port;
@@ -76,7 +76,7 @@ app.post('/', (req, res) => {
     })
 })
 
-app.post('/update', (req, res) => {
+app.post('/update', (req) => {
     closeIp = req.body.ip;
     closePort = req.body.port
 })
