@@ -46,6 +46,10 @@ export default function AddScaleList() {
 
 		fetch('http://127.0.0.1:2000/', requestOptions)
 			.then(response => response.json())
+
+		setTimeout(() => {
+			window.location.reload()
+		}, 75)
 	}
 
 	useEffect(() => {
@@ -66,6 +70,7 @@ export default function AddScaleList() {
 				</svg>
 			</button>
 			<ReactModal
+				ariaHideApp={false}
 				isOpen={isOpen}
 			>
 				{list.length>0 ? <List data={list} setIndex={setIndex}/> : null}

@@ -17,6 +17,17 @@ export default function Platform(props) {
 	const [zeroDis, setZeroDis] = useState('visible')
 
 	useEffect(() => {
+		if(!(`MIN_STATE_${props.sCount}${props.count}` in localStorage)) {
+			window.localStorage.setItem(`MIN_STATE_${props.sCount}${props.count}`, JSON.stringify(-1500))
+		}
+		if(!(`MAX_STATE_${props.sCount}${props.count}` in localStorage)) {
+			window.localStorage.setItem(`MAX_STATE_${props.sCount}${props.count}`, JSON.stringify(1500))
+		}
+	}, [])
+
+	useEffect(() => {
+		setMin(JSON.parse(window.localStorage.getItem(`MIN_STATE_${props.sCount}${props.count}`)))
+		setMax(JSON.parse(window.localStorage.getItem(`MAX_STATE_${props.sCount}${props.count}`)))
 		if (prop.weight > max) {
 			setColor('#ff4d4d')
 			setBorderColor('#ff0000')
@@ -61,11 +72,10 @@ export default function Platform(props) {
 
 				</div>
 				<div className="buttons">
-					<Settings setMin={setMin}
-							  setMax={setMax}
-							  unit={prop.unit}
-							  actMin={min}
-							  actMax={max}
+					<Settings
+						count={props.count}
+						sCount={props.sCount}
+						unit={prop.unit}
 					/>
 				</div>
 			</div>

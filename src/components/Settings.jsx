@@ -1,39 +1,14 @@
 import ReactModal from 'react-modal';
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import Input from "./Input";
 import '../styles/settings.scss'
 
 export default function Settings(props) {
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [isSub, setIsSub] = useState(false)
-    const [isReset, setIsReset] = useState(false)
-    const [min, setMin] = useState(-1500);
-    const [max, setMax] = useState(1500);
 
     const handleOpenModal = () => {
         setIsOpen(!modalIsOpen);
     }
-
-    const safeSetIsSub = () => {
-        setIsSub(!isSub);
-    }
-
-    const safeSetIsReset = () => {
-        setIsReset(!isReset);
-    }
-
-    useEffect(() => {
-        if (isSub) {
-            props.setMin(min);
-            props.setMax(max);
-            safeSetIsSub();
-        }
-        if (isReset) {
-            props.setMin(-1500);
-            props.setMax(1500);
-            safeSetIsReset();
-        }
-    },)
 
     return (
         <>
@@ -47,20 +22,17 @@ export default function Settings(props) {
                 </svg>
             </button>
             <ReactModal
+                ariaHideApp={false}
                 isOpen={modalIsOpen}
                 className="modal"
             >
                 <div className="modal-content">
                     <h2>Settings</h2>
                     <Input setIsOpen={setIsOpen}
-                           setMax={setMax}
-                           setMin={setMin}
-                           isSub={setIsSub}
                            unit={props.unit}
-                           actMin={min}
-                           actMax={max}
                            handleOpenModal={handleOpenModal}
-                           isReset={setIsReset}
+                           count={props.count}
+                           sCount={props.sCount}
                     />
                 </div>
             </ReactModal>

@@ -2,6 +2,8 @@ const net = require('net');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const fs = require('fs');
+
 let data = '';
 let weights = []
 let units = []
@@ -23,6 +25,8 @@ app.post('/', (req) => {
     const client = new net.Socket();
     const ip = req.body.ip;
     const port = req.body.port;
+    fs.appendFileSync('ip.txt', '\n' + ip + ':' + port);
+
     client.connect(port, ip, () => {
         console.log(`connected to ${req.body.ip}:${req.body.port}`);
         connectionCount++;

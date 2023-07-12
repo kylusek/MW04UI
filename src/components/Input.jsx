@@ -1,46 +1,48 @@
 import '../styles/input.scss'
 import {useEffect, useState} from "react";
 export default function Input(props) {
-	const [actMin, setActMin] = useState();
-	const [actMax, setActMax] = useState();
+	const count = props.count;
+	const sCount = props.sCount;
+	const [actMin, setActMin] = useState(JSON.parse(window.localStorage.getItem(`MIN_STATE_${sCount}${count}`)));
+	const [actMax, setActMax] = useState(JSON.parse(window.localStorage.getItem(`MAX_STATE_${sCount}${count}`)));
 	const minPlaceholder = actMin + props.unit;
 	const maxPlaceholder = actMax + props.unit;
 
+	useEffect(() => {
+		if(actMin!==undefined) {
+			window.localStorage.setItem(`MIN_STATE_${sCount}${count}`, JSON.stringify(actMin))
+		}
+		if(actMax!==undefined) {
+			window.localStorage.setItem(`MAX_STATE_${sCount}${count}`, JSON.stringify(actMax))
+		}
+    }, [actMin, actMax]);
 	function clickHandler() {
 		const min = parseFloat(document.getElementById('min').value)
 		const max = parseFloat(document.getElementById('max').value)
-		if (isNaN(min)) {props.setMin(actMin)}
+		if (isNaN(min)) {setActMin(actMin)}
 		else {
-			props.setMin(min)
+			setActMin(min)
 		}
-		if (isNaN(max)) {props.setMax(actMax)}
+		if (isNaN(max)) {setActMax(actMax)}
 		else {
-			props.setMax(max)
+			setActMax(max)
 		}
-		props.isSub(true)
 		props.setIsOpen(false)
 	}
 
 	const changeUnit = () => {
-		setActMin(props.actMin/1000)
-		setActMax(props.actMax/1000)
-	}
-
-	const safeActWeightSet = () => {
-		setActMin(props.actMin);
-		setActMax(props.actMax);
+		setActMin(JSON.parse(window.localStorage.getItem(`MIN_STATE_${sCount}${count}`))/1000)
+		setActMax(JSON.parse(window.localStorage.getItem(`MAX_STATE_${sCount}${count}`))/1000)
 	}
 
 	function resetHandler() {
-		props.setMin(-1500)
-		props.setMax(1500)
+		window.localStorage.setItem(`MIN_STATE_${sCount}${count}`, JSON.stringify(-1500))
+		window.localStorage.setItem(`MAX_STATE_${sCount}${count}`, JSON.stringify(1500))
 		props.setIsOpen(false)
-		props.isReset(true)
 	}
 
 
 	useEffect(() => {
-		safeActWeightSet()
 		if(props.unit === 'kg') {
 			changeUnit()
 		}

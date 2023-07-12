@@ -6,6 +6,26 @@ export default function Scale(props) {
 	const count = props.count
 
 	const closeConn = () => {
+		const length = window.localStorage.length/8
+		for(let i = count; i<length; i++) {
+			window.localStorage.setItem(`MIN_STATE_${count}1`, window.localStorage.getItem(`MIN_STATE_${count+1}1`))
+			window.localStorage.setItem(`MIN_STATE_${count}2`, window.localStorage.getItem(`MIN_STATE_${count+1}2`))
+			window.localStorage.setItem(`MIN_STATE_${count}3`, window.localStorage.getItem(`MIN_STATE_${count+1}3`))
+			window.localStorage.setItem(`MIN_STATE_${count}4`, window.localStorage.getItem(`MIN_STATE_${count+1}4`))
+			window.localStorage.setItem(`MAX_STATE_${count}1`, window.localStorage.getItem(`MAX_STATE_${count+1}1`))
+			window.localStorage.setItem(`MAX_STATE_${count}2`, window.localStorage.getItem(`MAX_STATE_${count+1}2`))
+			window.localStorage.setItem(`MAX_STATE_${count}3`, window.localStorage.getItem(`MAX_STATE_${count+1}3`))
+			window.localStorage.setItem(`MAX_STATE_${count}4`, window.localStorage.getItem(`MAX_STATE_${count+1}4`))
+		}
+		window.localStorage.removeItem(`MAX_STATE_${length}1`)
+		window.localStorage.removeItem(`MIN_STATE_${length}1`)
+		window.localStorage.removeItem(`MAX_STATE_${length}2`)
+		window.localStorage.removeItem(`MIN_STATE_${length}2`)
+		window.localStorage.removeItem(`MAX_STATE_${length}3`)
+		window.localStorage.removeItem(`MIN_STATE_${length}3`)
+		window.localStorage.removeItem(`MAX_STATE_${length}4`)
+		window.localStorage.removeItem(`MIN_STATE_${length}4`)
+		props.delete(true)
 		const request = {
 			method: 'POST',
             headers: {
@@ -30,7 +50,7 @@ export default function Scale(props) {
 			{post.Weighnings?.map((platform,i) => {
 				return (
 					<>
-						<Platform key={i} platform={platform} count={i+1}/>
+						<Platform key={i} platform={platform} count={i+1} sCount={count}/>
 					</>
 				)
 			})}
