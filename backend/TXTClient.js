@@ -1,24 +1,24 @@
-const { open } = require('node:fs/promises');
+const fs = require('fs');
 
-(async () => {
-    const file = await open('ip.txt')
+let str = fs.readFileSync('ip.txt').toString()
 
-    for await (const line of file.readLines()) {
+fs.watch('ping.txt', () => {
+    while(true) {
+        const temp = str.slice(0, str.search('#'))
         const reqOpt = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                ip: line.slice(0, line.search(':')),
-                port: line.slice(line.search(':')+1)
+                ip: temp.slice(0, temp.search(':')),
+                port: temp.slice(temp.search(':')+1)
             })
         }
         fetch('http://localhost:2000', reqOpt)
             .then(response => response.json())
+
+        str = str.slice(-(str.length - str.search('#'))+1)
+        if(temp + '#' === str) break
     }
-})();
-
-(async () = => {
-
 })
