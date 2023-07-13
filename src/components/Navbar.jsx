@@ -3,28 +3,29 @@ import AddScaleList from "./AddScaleList";
 
 export default function Navbar(props) {
 	const clickHandler = () => {
+		const ip = document.getElementById('ip')
+		const port = document.getElementById('port')
+
 		const requestOptions = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				ip: document.getElementById('ip').value,
-				port: document.getElementById('port').value
+				ip: ip.value,
+				port: port.value
 			})
 		}
 
 		fetch('http://127.0.0.1:2000/', requestOptions)
 			.then(response => response.json())
 
-		document.getElementById('ip').value = "";
-		document.getElementById('port').value = "";
+		ip.value = "";
+		port.value = "";
 
-		if(props.isEmpty) {
-			setTimeout(() => {
-				window.location.reload();
-			}, 75)
-		}
+		setTimeout(() => {
+			props.setRender(1)
+		}, 200)
 	}
 
 	return (
@@ -41,7 +42,7 @@ export default function Navbar(props) {
 						d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 				</svg>
 			</button>
-			<AddScaleList/>
+			<AddScaleList setRender={props.setRender}/>
 		</div>
 	)
 }

@@ -1,13 +1,57 @@
 import '../styles/scale.scss'
 import Platform from "./Platform";
+import { useEffect } from 'react'
 
 export default function Scale(props) {
 	const post = props.post
 	const count = props.count
+	const sCount = props.sCount
+
+	const isIn = (arr) => {
+		for(let i=0; i<arr.length; i++) {
+			if(arr[i].ip === post.ip && arr[i].port === post.port) {
+				return true
+			}
+		}
+		return false
+	}
+
+	const getIndex = (arr) => {
+		for(let i=0; i<arr.length; i++) {
+			if(arr[i].ip === post.ip && arr[i].port === post.port) {
+				return i;
+			}
+		}
+	}
+
+	useEffect(() => {
+		if(!('CONNECTIONS' in window.localStorage)) {
+			window.localStorage.setItem('CONNECTIONS',JSON.stringify([{ip: post.ip, port: post.port}]))
+		}
+		else {
+			let tempArr = JSON.parse(window.localStorage.getItem('CONNECTIONS'))
+			if(!isIn(tempArr)) {
+				tempArr.push({ip: post.ip, port: post.port})
+				window.localStorage.setItem('CONNECTIONS', JSON.stringify(tempArr))
+			}
+		}
+	}, [])
 
 	const closeConn = () => {
-		const length = window.localStorage.length/8
-		for(let i = count; i<length; i++) {
+		let tempArr = JSON.parse(window.localStorage.getItem('CONNECTIONS'))
+		if(tempArr.length > 1) {
+			const index = getIndex(tempArr)
+			for(let i=index; i<tempArr.length-1; i++) {
+				tempArr[i] = tempArr[i+1]
+			}
+			tempArr.pop()
+			window.localStorage.setItem('CONNECTIONS', JSON.stringify(tempArr))
+		}
+		else {
+			window.localStorage.removeItem('CONNECTIONS')
+		}
+
+		for(let i = count; i<sCount; i++) {
 			window.localStorage.setItem(`MIN_STATE_${count}1`, window.localStorage.getItem(`MIN_STATE_${count+1}1`))
 			window.localStorage.setItem(`MIN_STATE_${count}2`, window.localStorage.getItem(`MIN_STATE_${count+1}2`))
 			window.localStorage.setItem(`MIN_STATE_${count}3`, window.localStorage.getItem(`MIN_STATE_${count+1}3`))
@@ -17,15 +61,19 @@ export default function Scale(props) {
 			window.localStorage.setItem(`MAX_STATE_${count}3`, window.localStorage.getItem(`MAX_STATE_${count+1}3`))
 			window.localStorage.setItem(`MAX_STATE_${count}4`, window.localStorage.getItem(`MAX_STATE_${count+1}4`))
 		}
-		window.localStorage.removeItem(`MAX_STATE_${length}1`)
-		window.localStorage.removeItem(`MIN_STATE_${length}1`)
-		window.localStorage.removeItem(`MAX_STATE_${length}2`)
-		window.localStorage.removeItem(`MIN_STATE_${length}2`)
-		window.localStorage.removeItem(`MAX_STATE_${length}3`)
-		window.localStorage.removeItem(`MIN_STATE_${length}3`)
-		window.localStorage.removeItem(`MAX_STATE_${length}4`)
-		window.localStorage.removeItem(`MIN_STATE_${length}4`)
-		props.delete(true)
+		window.localStorage.removeItem(`MAX_STATE_${sCount}1`)
+		window.localStorage.removeItem(`MIN_STATE_${sCount}1`)
+		window.localStorage.removeItem(`MAX_STATE_${sCount}2`)
+		window.localStorage.removeItem(`MIN_STATE_${sCount}2`)
+		window.localStorage.removeItem(`MAX_STATE_${sCount}3`)
+		window.localStorage.removeItem(`MIN_STATE_${sCount}3`)
+		window.localStorage.removeItem(`MAX_STATE_${sCount}4`)
+		window.localStorage.removeItem(`MIN_STATE_${sCount}4`)
+
+		if(sCount === 1) {
+			props.delete(true)
+		}
+
 		const request = {
 			method: 'POST',
             headers: {
@@ -39,9 +87,6 @@ export default function Scale(props) {
 		fetch('http://localhost:2000/update', request)
 			.then(response => response.json())
 
-		setTimeout(() => {
-			window.location.reload()
-		}, 50)
 	}
 
 	return (

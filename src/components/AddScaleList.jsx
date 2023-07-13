@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import List from "./List";
 import '../styles/addscalelist.scss'
 
-export default function AddScaleList() {
+export default function AddScaleList(props) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [list, setList] = useState([]);
 	const [index, setIndex] = useState();
@@ -48,8 +48,8 @@ export default function AddScaleList() {
 			.then(response => response.json())
 
 		setTimeout(() => {
-			window.location.reload()
-		}, 75)
+			props.setRender(1)
+		}, 200)
 	}
 
 	useEffect(() => {

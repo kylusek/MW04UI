@@ -2,7 +2,6 @@
 const net = require('net');
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
 
 //Functions
 const app = express();
@@ -12,7 +11,6 @@ let weights = []
 let units = []
 let isStab = []
 let idTab = []
-let fileContent = []
 
 //Objects
 let temp = {}
@@ -34,14 +32,10 @@ let closePort = null;
 app.use(cors());
 app.use(express.json());
 
-fs.writeFileSync('ping.txt', '1')
-fs.writeFileSync('ip.txt', '')
 app.post('/', (req) => {
     const client = new net.Socket();
     const ip = req.body.ip;
     const port = req.body.port;
-    fs.appendFileSync('ip.txt',ip + ':' + port + '#');
-
     client.connect(port, ip, () => {
         console.log(`connected to ${req.body.ip}:${req.body.port}`);
         connectionCount++;
@@ -98,10 +92,6 @@ app.post('/', (req) => {
 app.post('/update', (req) => {
     closeIp = req.body.ip;
     closePort = req.body.port;
-    fs.writeFileSync('ip.txt', '')
-    for(let i=0; i<fileContent.length; i++) {
-        fs.appendFileSync('ip.txt', fileContent[i] + '\n')
-    }
 })
 
 app.get('/', (req, res) => {
