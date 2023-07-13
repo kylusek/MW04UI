@@ -44,7 +44,7 @@ export default function Platform(props) {
 		else {
             setStabDis('hidden')
         }
-		if(prop.weight === 0) {
+		if(parseFloat(prop.weight) === 0) {
 			setZeroDis('visible')
 		}
 		else {
