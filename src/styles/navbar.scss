@@ -1,7 +1,13 @@
 @import 'main';
 
+.nav-container {
+  float: left;
+  height: 100vh;
+  margin: 0;
+  width: 5%;
+}
 .ownNavbar {
-  @include mainBorder;
+  //@include mainBorder;
   background-color: $mid;
   border-radius: 1em;
   box-sizing: border-box;
@@ -12,7 +18,6 @@
     right: 0;
     top: 0.25em;
   }
-  width: 100%;
 }
 .ownNavbar > p {
   color: $lightest;
@@ -28,9 +33,9 @@
     left: 0.5em;
     right: 0.5em;
   }
-  padding: 0.2em 0.1em 0.1em;
+  padding: 0.4em 0.5em 0.2em;
 }
 .ownNavbar > button > svg {
-  height: 1.5em;
-  width: 2em;
+  height: 3em;
+  width: 3em;
 }

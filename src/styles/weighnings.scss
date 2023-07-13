@@ -1,16 +1,13 @@
 @import "main";
 
 .scales {
-  @include mainBorder;
   background-color: $mid;
-  border-bottom: 0;
-  border-radius: 1em 1em 0 0;
   box-sizing: border-box;
   float: left;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  min-height: 84.4vh;
-  padding: 0.3em;
+  margin: 0;
+  padding: 0 0.3em 0.3em;
   text-align: center;
-  width: 100%;
+  width: 95%;
 }

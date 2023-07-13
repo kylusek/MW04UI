@@ -1,8 +1,8 @@
 import '../styles/platform.scss'
 import {useEffect, useState} from "react";
 import Settings from "./Settings";
-import stability from "../assets/Stability.svg";
-import zero from "../assets/Zeroing.svg";
+import stability from "../assets/Stability.png";
+import zero from "../assets/Zeroing.png";
 
 export default function Platform(props) {
 	const prop = props.platform
@@ -54,28 +54,41 @@ export default function Platform(props) {
 
 	return (
 		<div className='platform'>
-			<h3>Platform {props.count}</h3>
-			<p style={{
-				'backgroundColor': `${backColor}`,
-				'border':`0.35em solid ${borderColor}`
-			}} className='pWeight'>{prop.weight} {prop.unit}</p>
-			<div className='platMenu'>
-				<div className='icons'>
-					<img src={stability} id='stab' alt='stab' style={{
+			<div className='pWeight'
+				 style={{
+					 'backgroundColor': `${backColor}`,
+					 'border':`0.35em solid ${borderColor}`
+				 }}
+				 id='value'
+			>
+				<p>{prop.weight} {prop.unit}</p>
+			</div>
+			<div
+				className='pWeight'
+				style={{
+					'backgroundColor': `#00b300`,
+					'border':`0.35em solid green`,
+					'border-left': '0'
+				}}
+				id='icons'
+			>
+				<div className='icons-img'>
+					<p className='icons'><img src={zero} id='zero' alt='zero' style={{
+						visibility: `${zeroDis}`,
+					}}/></p>
+				</div>
+				<div className='icons-img'>
+					<p className='icons'><img src={stability} id='stab' alt='stab' style={{
 						visibility: `${stabDis}`,
-					}}/>
-					<img src={zero} id='zero' alt='zero' style={{
-                        visibility: `${zeroDis}`,
-                    }}/>
-
+					}}/></p>
 				</div>
-				<div className="buttons">
-					<Settings
-						count={props.count}
-						sCount={props.sCount}
-						unit={prop.unit}
-					/>
-				</div>
+			</div>
+			<div className="buttons">
+				<Settings
+					count={props.count}
+					sCount={props.sCount}
+					unit={prop.unit}
+				/>
 			</div>
 		</div>
 	)

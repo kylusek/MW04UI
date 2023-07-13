@@ -11,7 +11,7 @@
   box-sizing: border-box;
   height: max-content;
   margin: 0.5em;
-  padding: 1em;
+  padding: 1.4em 0.5em;
 }
 h2 {
   font-size: 2em;
@@ -20,4 +20,11 @@ h2 {
 
 .scale > p {
   color: #fff;
+}
+.scale > button > svg {
+  height: 2.1em;
+  width: 2.1em;
+}
+.scale > button {
+  margin-top: 0.5em;
 }

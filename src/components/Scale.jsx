@@ -91,7 +91,6 @@ export default function Scale(props) {
 
 	return (
 		<div className='scale'>
-			<h2>Scale {count}</h2>
 			{post.Weighnings?.map((platform,i) => {
 				return (
 					<>
@@ -99,7 +98,6 @@ export default function Scale(props) {
 					</>
 				)
 			})}
-			<p>Ip: {post.ip}:{post.port}</p>
 			<button onClick={closeConn}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					 className="bi bi-dash-circle" viewBox="0 0 16 16">
