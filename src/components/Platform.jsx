@@ -1,5 +1,3 @@
-// noinspection EqualityComparisonWithCoercionJS,JSValidateTypes
-
 import '../styles/platform.scss'
 import {useEffect, useState} from "react";
 import Settings from "./Settings";
@@ -46,7 +44,7 @@ export default function Platform(props) {
 		else {
             setStabDis('hidden')
         }
-		if(prop.weight == 0) {
+		if(prop.weight === 0) {
 			setZeroDis('visible')
 		}
 		else {
