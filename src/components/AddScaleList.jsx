@@ -51,7 +51,7 @@ export default function AddScaleList(props) {
 		if(props.count === 0) {
 			setTimeout(() => {
 				window.location.reload();
-			}, 300)
+			}, 200)
 		}
 		else {
 			setTimeout(() => {

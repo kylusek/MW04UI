@@ -73,14 +73,16 @@ app.post('/', (req, res) => {
             }
             object.Scales[id-1] = temp;
             if(closeIp === ip && closePort === port){
+                object.Scales.pop();
                 client.destroy();
                 closeIp = null;
                 closePort = null;
                 delCount++;
-                object.Scales.pop()
+                object.Scales.pop();
                 for(let i = index; i < connectionCount; i++){
                     idTab[i] -= 1
                 }
+                object.Scales.pop();
                 console.log(`disconnected from ${req.body.ip}:${req.body.port}`)
             }
         });
@@ -94,6 +96,7 @@ app.post('/', (req, res) => {
 app.post('/update', (req, res) => {
     closeIp = req.body.ip;
     closePort = req.body.port;
+    object.Scales.pop();
     res.end();
 })
 
