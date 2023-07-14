@@ -3,11 +3,13 @@ import Weighnings from "./components/Weighnings";
 import {useEffect, useState} from "react";
 import './styles/main.scss'
 import './styles/responsive.scss'
+import './styles/loading.css'
 
 export default function App() {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [wRender, setWRender] = useState(0);
 	const [count, setCount] = useState(0);
+	const [loading, setLoading] = useState(false);
 
 	// useEffect(() => {
 	// 	if('CONNECTIONS' in window.localStorage) {
@@ -34,8 +36,20 @@ export default function App() {
 
 	return (
 		<>
-			<Navbar isEmpty={isEmpty} setRender={setWRender} count={count}/>
-			<Weighnings isEmpty={setIsEmpty} render={wRender} setRender={setWRender} setCount={setCount}/>
+			<Navbar
+				isEmpty={isEmpty}
+				setRender={setWRender}
+				count={count}
+				loading={setLoading}
+			/>
+			<Weighnings
+				isEmpty={setIsEmpty}
+				render={wRender}
+				setRender={setWRender}
+				setCount={setCount}
+				loading={loading}
+				setLoading={setLoading}
+			/>
 		</>
 	)
 }

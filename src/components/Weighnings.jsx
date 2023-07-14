@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import '../styles/main.scss'
 import '../styles/weighnings.scss'
 import Scale from '../components/Scale'
+import Loading from '../components/Loading'
 
 export default function Weighnings(props) {
 	const [posts, setPosts] = useState([]);
@@ -45,6 +46,7 @@ export default function Weighnings(props) {
 							delete={setDelete}
 							sCount={posts.Scales.length}
 							setRender={setSecRender}
+							setLoading={props.setLoading}
 						/>
 						}
 					</>
@@ -55,6 +57,7 @@ export default function Weighnings(props) {
 	return (
 		<div className='scales'>
 			{render ? renderScales() : null}
+			{props.loading ? <Loading /> : null}
 		</div>
 	)
 }

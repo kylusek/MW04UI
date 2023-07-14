@@ -7,8 +7,16 @@ export default function Navbar(props) {
 	return (
 		<div className='nav-container'>
 			<div className='ownNavbar'>
-				<ScaleAdder setRender={props.setRender} count={props.count}/>
-				<AddScaleList setRender={props.setRender} count={props.count}/>
+				<ScaleAdder
+					setRender={props.setRender}
+					count={props.count}
+					loading={props.loading}
+				/>
+				<AddScaleList
+					setRender={props.setRender}
+					count={props.count}
+					loading={props.loading}
+				/>
 			</div>
 		</div>
 	)

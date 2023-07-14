@@ -26,6 +26,7 @@ export default function Scale(props) {
 	}
 
 	useEffect(() => {
+		props.setLoading(false)
 		if(!('CONNECTIONS' in window.localStorage)) {
 			window.localStorage.setItem('CONNECTIONS',JSON.stringify([{ip: post.ip, port: post.port}]))
 		}
