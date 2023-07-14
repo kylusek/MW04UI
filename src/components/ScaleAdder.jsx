@@ -1,5 +1,5 @@
 import ReactModal from "react-modal";
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import '../styles/scaleadder.scss'
 
 export default function ScaleAdder(props) {
@@ -8,7 +8,6 @@ export default function ScaleAdder(props) {
 	const handleOpenModal = () => {
 		setIsOpen(!isOpen);
 	}
-
 	const clickHandler = () => {
 		const ip = document.getElementById('ip')
 		const port = document.getElementById('port')
@@ -48,6 +47,21 @@ export default function ScaleAdder(props) {
 		}
 	}
 
+	useEffect(() => {
+		const keyDownHandler = event => {
+			if(event.key === 'Enter') {
+				event.preventDefault();
+				clickHandler();
+			}
+		};
+
+		document.addEventListener('keydown', keyDownHandler);
+
+		return () => {
+			document.removeEventListener('keydown', keyDownHandler);
+		};
+	}, []);
+
 	return (
 		<>
 			<button onClick={() => {handleOpenModal()}}>
@@ -64,7 +78,7 @@ export default function ScaleAdder(props) {
 				className='modal'
 			>
 				<div className='adder modal-content'>
-					<div className='grid'>
+					<div className='grid' >
 						<p>Ip: </p>
 						<input type='text' id='ip' placeholder='0.0.0.0' autoComplete='off'/>
 						<p>Port: </p>
