@@ -1,17 +1,21 @@
 @import "main";
 
-@mixin border {
-  border: 0.2em solid $gray;
-  border-radius: 1em;
-}
-
 .scale {
   background-color: #303030;
   @include border;
   box-sizing: border-box;
   height: max-content;
-  margin: 0.5em;
-  padding: 1.4em 0.5em;
+  margin: {
+    left: 0.5em;
+    right: 0.5em;
+    top: 0.5em;
+  }
+  padding: {
+    bottom: 0.875em;
+    left: 0.5em;
+    right: 0.5em;
+    top: 0.875em;
+  }
 }
 h2 {
   font-size: 2em;

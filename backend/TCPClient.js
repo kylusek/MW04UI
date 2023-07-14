@@ -32,7 +32,7 @@ let closePort = null;
 app.use(cors());
 app.use(express.json());
 
-app.post('/', (req) => {
+app.post('/', (req, res) => {
     const client = new net.Socket();
     const ip = req.body.ip;
     const port = req.body.port;
@@ -87,11 +87,13 @@ app.post('/', (req) => {
     client.on('error', (err) => {
         console.log(err);
     })
+    res.end();
 })
 
-app.post('/update', (req) => {
+app.post('/update', (req, res) => {
     closeIp = req.body.ip;
     closePort = req.body.port;
+    res.end();
 })
 
 app.get('/', (req, res) => {

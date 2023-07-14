@@ -1,11 +1,29 @@
 @import 'main.scss';
 
-.ownNavbar p {
-  color: $lightest;
+.adder {
+  margin: 9em auto !important;
+}
+.adder p {
   display: inline-block;
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 0;
 }
-.ownNavbar input {
-  font-size: 1.5em;
+.adder input {
+  font-size: 1em;
+  margin-left: 0.2em;
+  width: 97.5%
+}
+.adder button {
+  margin: {
+    left: 0.2em;
+    right: 0.2em;
+    top: 0;
+  }
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+.grid>p:first-child {
+  text-align: right;
 }

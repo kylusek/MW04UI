@@ -85,12 +85,13 @@ export default function Scale(props) {
             })
 		}
 		fetch('http://localhost:2000/update', request)
-			.then(response => response.json())
+			.then(response => response)
 
 	}
 
 	return (
 		<div className='scale'>
+			<h3>{post.ip}:{post.port}</h3>
 			{post.Weighnings?.map((platform,i) => {
 				return (
 					<>

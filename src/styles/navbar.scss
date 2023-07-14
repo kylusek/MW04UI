@@ -1,15 +1,16 @@
 @import 'main';
 
 .nav-container {
+  @include border;
+  background-color: #303030;
   float: left;
-  height: 100vh;
-  margin: 0;
-  width: 5%;
+  height: 97.9vh;
+  margin: {
+    top: 0.5em;
+  }
+  width: 4.68%;
 }
 .ownNavbar {
-  //@include mainBorder;
-  background-color: $mid;
-  border-radius: 1em;
   box-sizing: border-box;
   float: left;
   margin: {
@@ -18,24 +19,4 @@
     right: 0;
     top: 0.25em;
   }
-}
-.ownNavbar > p {
-  color: $lightest;
-  display: inline-block;
-  font-size: 1.5em;
-  margin: 0;
-}
-.ownNavbar > input {
-  font-size: 1.5em;
-}
-.ownNavbar > button {
-  margin: {
-    left: 0.5em;
-    right: 0.5em;
-  }
-  padding: 0.4em 0.5em 0.2em;
-}
-.ownNavbar > button > svg {
-  height: 3em;
-  width: 3em;
 }

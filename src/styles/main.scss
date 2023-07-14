@@ -1,5 +1,6 @@
-@mixin mainBorder {
-  border: 0.2em solid $fontcolor;
+@mixin border {
+  border: 0.2em solid $gray;
+  border-radius: 1em;
 }
 
 $fontcolor: #DA0037;
@@ -33,11 +34,11 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 button:hover {
-  background-color: #808080;
+  background-color: #333;
   transition-duration: 0.2s;
 }
 button {
-  background-color: #8c8c8c;
+  background-color: #4d4d4d;
   border-radius: 1em;
   color: $lightest;
   margin-top: 0.5em;
@@ -52,4 +53,8 @@ button {
 button>svg {
   height: 2.5em;
   width: 2.5em;
+}
+p {
+  color: black;
+  font-weight: bold;
 }
