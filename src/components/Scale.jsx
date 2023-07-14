@@ -6,10 +6,11 @@ export default function Scale(props) {
 	const post = props.post
 	const count = props.count
 	const sCount = props.sCount
+	let key = 1;
 
 	const isIn = (arr) => {
-		for(let i=0; i<arr.length; i++) {
-			if(arr[i].ip === post.ip && arr[i].port === post.port) {
+		for(const element of arr) {
+			if (element.ip === post.ip && element.port === post.port) {
 				return true
 			}
 		}
@@ -87,25 +88,31 @@ export default function Scale(props) {
 		fetch('http://localhost:2000/update', request)
 			.then(response => response)
 
+		props.setRender(1)
 	}
 
 	return (
 		<div className='scale'>
-			<h3>{post.ip}:{post.port}</h3>
 			{post.Weighnings?.map((platform,i) => {
+				key++
 				return (
 					<>
-						<Platform key={i} platform={platform} count={i+1} sCount={count}/>
+						<Platform key={key} platform={platform} count={i+1} sCount={count}/>
 					</>
 				)
 			})}
-			<button onClick={closeConn}>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-					 className="bi bi-dash-circle" viewBox="0 0 16 16">
-					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-					<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-				</svg>
-			</button>
+			<div className='hGrid'>
+				<div id='header'>
+					<h3>{post.ip}:{post.port}</h3>
+				</div>
+				<button onClick={closeConn}>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+						 className="bi bi-dash-circle" viewBox="0 0 16 16">
+						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+						<path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+					</svg>
+				</button>
+			</div>
 		</div>
 	)
 }

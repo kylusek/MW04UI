@@ -6,15 +6,16 @@
   box-sizing: border-box;
   height: max-content;
   margin: {
+    bottom: 0.5em;
     left: 0.5em;
     right: 0.5em;
     top: 0.5em;
   }
   padding: {
-    bottom: 0.875em;
+    bottom: 1.39em;
     left: 0.5em;
     right: 0.5em;
-    top: 0.875em;
+    top: 1.39em;
   }
 }
 h2 {
@@ -25,10 +26,30 @@ h2 {
 .scale > p {
   color: #fff;
 }
-.scale > button > svg {
+.scale  button > svg {
   height: 2.1em;
   width: 2.1em;
 }
-.scale > button {
+.scale  button {
   margin-top: 0.5em;
+}
+#header {
+  display: inline-block;
+  padding-top: 1.1em;
+}
+h3 {
+  display: inline-block;
+  margin: 0 0.5em 0.5em;
+  font-size: 1.2em;
+}
+.hGrid {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  margin: {
+    bottom: -0.5em;
+    left: 0.5em;
+    right: 0.5em;
+    top: 0;
+  }
+  padding: 0 0.5em 0.5em;
 }

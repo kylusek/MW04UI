@@ -14,6 +14,19 @@ export default function Platform(props) {
 	const [stabDis, setStabDis] = useState('visible')
 	const [zeroDis, setZeroDis] = useState('visible')
 
+	const isNull = () => {
+		if(prop.weight === '') {
+			return (
+				<>----------</>
+			)
+		}
+		else {
+			return (
+				<>{prop.weight} {prop.unit}</>
+			)
+		}
+	}
+
 	useEffect(() => {
 		if(!(`MIN_STATE_${props.sCount}${props.count}` in localStorage)) {
 			window.localStorage.setItem(`MIN_STATE_${props.sCount}${props.count}`, JSON.stringify(-1500))
@@ -51,24 +64,14 @@ export default function Platform(props) {
             setZeroDis('hidden')
         }
 	})
-
 	return (
 		<div className='platform'>
-			<div className='pWeight'
-				 style={{
-					 'backgroundColor': `${backColor}`,
-					 'border':`0.35em solid ${borderColor}`
-				 }}
-				 id='value'
-			>
-				<p>{prop.weight} {prop.unit}</p>
-			</div>
 			<div
 				className='pWeight'
 				style={{
-					'backgroundColor': `#00b300`,
-					'border':`0.35em solid green`,
-					'border-left': '0'
+					'backgroundColor': `${backColor}`,
+					'border':`0.35em solid ${borderColor}`,
+					borderRight:`${backColor}`
 				}}
 				id='icons'
 			>
@@ -82,6 +85,16 @@ export default function Platform(props) {
 						visibility: `${stabDis}`,
 					}}/></p>
 				</div>
+			</div>
+			<div className='pWeight'
+				 style={{
+					 'backgroundColor': `${backColor}`,
+					 'border':`0.35em solid ${borderColor}`,
+					 borderLeft: `${backColor}`
+				 }}
+				 id='value'
+			>
+				<p>{isNull()}</p>
 			</div>
 			<div className="buttons">
 				<Settings

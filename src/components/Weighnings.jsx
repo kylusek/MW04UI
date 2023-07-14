@@ -11,39 +11,44 @@ export default function Weighnings(props) {
 
 	useEffect(() => {
 		props.setRender(0)
-	}, [props.render, secRender])
+	}, [props.render])
+
+	useEffect(() => {
+		setSecRender(0)
+	}, [secRender])
+
 	useEffect(() => {
 		fetch("http://localhost:2000/")
 			.then(res => res.json())
 			.then((data) => {
-				if (data.Scales.length !== 0) {
+				if (data.Scales.length === 0) {
+					props.isEmpty(true)
+					props.setCount(data.Scales.length)
+				} else {
 					setPosts(data)
 					setRender(true)
 					props.isEmpty(false)
-				}
-				else {
-					props.isEmpty(true)
+					props.setCount(data.Scales.length)
 				}
 			})
     })
 
 	const renderScales = () => {
 		return (
-			posts.Scales?.map((post, i) => {
-				return (
+			posts.Scales?.map((post, i) =>
+				(
 					<>
-					{scaleDelete ? null : <Scale
-											key={post.id}
-											post={post}
-											count={i+1}
-											delete={setDelete}
-											sCount={posts.Scales.length}
-											setRender={setSecRender}
-										  />
-					}
+						{scaleDelete ? null : <Scale
+							key={post.id}
+							post={post}
+							count={i + 1}
+							delete={setDelete}
+							sCount={posts.Scales.length}
+							setRender={setSecRender}
+						/>
+						}
 					</>
-				)
-			})
+				))
 		)
 	}
 

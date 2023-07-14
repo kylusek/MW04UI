@@ -75,6 +75,7 @@ app.post('/', (req, res) => {
             if(closeIp === ip && closePort === port){
                 client.destroy();
                 closeIp = null;
+                closePort = null;
                 delCount++;
                 object.Scales.pop()
                 for(let i = index; i < connectionCount; i++){

@@ -47,9 +47,16 @@ export default function AddScaleList(props) {
 		fetch('http://127.0.0.1:2000/', requestOptions)
 			.then(response => response)
 
-		setTimeout(() => {
-			props.setRender(1)
-		}, 200)
+		if(props.count === 0) {
+			setTimeout(() => {
+				window.location.reload();
+			}, 300)
+		}
+		else {
+			setTimeout(() => {
+				props.setRender(1)
+			}, 500)
+		}
 	}
 
 	useEffect(() => {

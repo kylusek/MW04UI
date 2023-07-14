@@ -7,34 +7,35 @@ import './styles/responsive.scss'
 export default function App() {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [wRender, setWRender] = useState(0);
+	const [count, setCount] = useState(0);
 
 	// useEffect(() => {
 	// 	if('CONNECTIONS' in window.localStorage) {
 	// 		const storageData = JSON.parse(window.localStorage.getItem('CONNECTIONS'))
-	// 		for(let i=0; i<storageData.length; i++) {
+	// 		for(const element of storageData) {
 	// 			const reqOpt = {
 	// 				method: 'POST',
 	// 				headers: {
 	// 					'Content-Type': 'application/json'
 	// 				},
 	// 				body: JSON.stringify({
-	// 					ip: storageData[i].ip,
-	// 					port: storageData[i].port
+	// 					ip: element.ip,
+	// 					port: element.port
 	// 				})
 	// 			}
 	// 			fetch(`http://localhost:2000/`, reqOpt)
-	// 				.then(res => res.json())
+	// 				.then(res => res)
 	// 		}
 	// 	}
 	// 	setTimeout(() => {
 	// 		setWRender(1);
-	// 	}, 200)
+	// 	}, 500)
 	// }, [])
 
 	return (
 		<>
-			<Navbar isEmpty={isEmpty} setRender={setWRender}/>
-			<Weighnings isEmpty={setIsEmpty} render={wRender} setRender={setWRender}/>
+			<Navbar isEmpty={isEmpty} setRender={setWRender} count={count}/>
+			<Weighnings isEmpty={setIsEmpty} render={wRender} setRender={setWRender} setCount={setCount}/>
 		</>
 	)
 }
