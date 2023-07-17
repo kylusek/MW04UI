@@ -11,28 +11,28 @@ export default function App() {
 	const [count, setCount] = useState(0);
 	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		if('CONNECTIONS' in window.localStorage) {
-			const storageData = JSON.parse(window.localStorage.getItem('CONNECTIONS'))
-			for(const element of storageData) {
-				const reqOpt = {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						ip: element.ip,
-						port: element.port
-					})
-				}
-				fetch(`http://localhost:2000/`, reqOpt)
-					.then(res => res)
-			}
-		}
-		setTimeout(() => {
-			setWRender(1);
-		}, 500)
-	}, [])
+	// useEffect(() => {
+	// 	if('CONNECTIONS' in window.localStorage) {
+	// 		const storageData = JSON.parse(window.localStorage.getItem('CONNECTIONS'))
+	// 		for(const element of storageData) {
+	// 			const reqOpt = {
+	// 				method: 'POST',
+	// 				headers: {
+	// 					'Content-Type': 'application/json'
+	// 				},
+	// 				body: JSON.stringify({
+	// 					ip: element.ip,
+	// 					port: element.port
+	// 				})
+	// 			}
+	// 			fetch(`http://localhost:2000/`, reqOpt)
+	// 				.then(res => res)
+	// 		}
+	// 	}
+	// 	setTimeout(() => {
+	// 		setWRender(1);
+	// 	}, 500)
+	// }, [])
 
 	return (
 		<>

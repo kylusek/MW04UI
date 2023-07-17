@@ -22,6 +22,7 @@ export default function Weighnings(props) {
 		fetch("http://localhost:2000/")
 			.then(res => res.json())
 			.then((data) => {
+				props.setRender(1)
 				if (data.Scales.length === 0) {
 					props.isEmpty(true)
 					props.setCount(data.Scales.length)
@@ -34,8 +35,8 @@ export default function Weighnings(props) {
 			})
     })
 
-	const renderScales = () => {
-		return (
+	const renderScales = () =>
+		(
 			posts.Scales?.map((post, i) =>
 				(
 					<>
@@ -52,7 +53,6 @@ export default function Weighnings(props) {
 					</>
 				))
 		)
-	}
 
 	return (
 		<div className='scales'>

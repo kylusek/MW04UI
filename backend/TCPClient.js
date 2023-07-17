@@ -82,7 +82,6 @@ app.post('/', (req, res) => {
                 for(let i = index; i < connectionCount; i++){
                     idTab[i] -= 1
                 }
-                object.Scales.pop();
                 console.log(`disconnected from ${req.body.ip}:${req.body.port}`)
             }
         });

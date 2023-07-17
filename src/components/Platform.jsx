@@ -51,7 +51,7 @@ export default function Platform(props) {
 			setColor('#00b300')
 			setBorderColor('green')
 		}
-		if (prop.isStab !== '?') {
+		if (prop.isStab !== '?' && prop.weight !== '') {
 			setStabDis('visible')
 		}
 		else {

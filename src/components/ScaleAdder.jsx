@@ -47,21 +47,6 @@ export default function ScaleAdder(props) {
 		}
 	}
 
-	useEffect(() => {
-		const keyDownHandler = event => {
-			if(event.key === 'Enter') {
-				event.preventDefault();
-				clickHandler();
-			}
-		};
-
-		document.addEventListener('keydown', keyDownHandler);
-
-		return () => {
-			document.removeEventListener('keydown', keyDownHandler);
-		};
-	}, []);
-
 	return (
 		<>
 			<button onClick={() => {handleOpenModal()}}>
