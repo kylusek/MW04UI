@@ -45,7 +45,7 @@ app.post('/', (req, res) => {
         setInterval(() => {
             id = idTab[index]
             client.write('SIA\r\n');
-        }, 100);
+        }, 200);
         client.on('data', (result) => {
             data = result.toString().trim();
             weights[0] = data.slice(5, 15).replace(/\s+/g, '')
@@ -73,7 +73,6 @@ app.post('/', (req, res) => {
             }
             object.Scales[id-1] = temp;
             if(closeIp === ip && closePort === port){
-                object.Scales.pop();
                 client.destroy();
                 closeIp = null;
                 closePort = null;

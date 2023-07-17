@@ -1,5 +1,5 @@
 import ReactModal from "react-modal";
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import '../styles/scaleadder.scss'
 
 export default function ScaleAdder(props) {
@@ -28,7 +28,7 @@ export default function ScaleAdder(props) {
 		}
 
 		fetch('http://127.0.0.1:2000/', requestOptions)
-			.then(response => response)
+			.then(response => console.log(response))
 
 		ip.value = "";
 		port.value = "";

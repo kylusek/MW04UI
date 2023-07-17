@@ -19,13 +19,13 @@ export default function Input(props) {
 	function clickHandler() {
 		const min = parseFloat(document.getElementById('min').value)
 		const max = parseFloat(document.getElementById('max').value)
-		if (isNaN(min)) {setActMin(actMin)}
-		else {
-			setActMin(min)
-		}
-		if (isNaN(max)) {setActMax(actMax)}
-		else {
-			setActMax(max)
+		if(min < max) {
+			if (!isNaN(min)) {
+				setActMin(min)
+			}
+			if (!isNaN(max)) {
+				setActMax(max)
+			}
 		}
 		props.setIsOpen(false)
 	}

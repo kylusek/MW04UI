@@ -57,7 +57,7 @@ export default function Weighnings(props) {
 	return (
 		<div className='scales'>
 			{render ? renderScales() : null}
-			{props.loading ? <Loading /> : null}
+			{props.loading ? <Loading loading={props.setLoading}/> : null}
 		</div>
 	)
 }
