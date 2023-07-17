@@ -9,6 +9,7 @@ export default function Weighnings(props) {
 	const [render, setRender] = useState(false);
 	const [scaleDelete, setDelete] = useState(false);
 	const [secRender, setSecRender] = useState(0);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		props.setRender(0)
@@ -19,6 +20,9 @@ export default function Weighnings(props) {
 	}, [secRender])
 
 	useEffect(() => {
+		if('LOADING' in window.localStorage) {
+			setLoading(true);
+		}
 		fetch("http://localhost:2000/")
 			.then(res => res.json())
 			.then((data) => {
@@ -47,7 +51,7 @@ export default function Weighnings(props) {
 							delete={setDelete}
 							sCount={posts.Scales.length}
 							setRender={setSecRender}
-							setLoading={props.setLoading}
+							setLoading={setLoading}
 						/>
 						}
 					</>
@@ -57,7 +61,7 @@ export default function Weighnings(props) {
 	return (
 		<div className='scales'>
 			{render ? renderScales() : null}
-			{props.loading ? <Loading loading={props.setLoading}/> : null}
+			{loading ? <Loading loading={setLoading}/> : null}
 		</div>
 	)
 }

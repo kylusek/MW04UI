@@ -1,15 +1,28 @@
 import '../styles/snackbar.scss';
 import {useState} from "react";
+import errImg from '../assets/connection-error.png';
 
 export default function Loading(props) {
 	const [showClass, setShow] = useState('');
+	const [display, setDisplay] = useState('inline-block')
+	const [isTimeout, setIsTimeout]	= useState(false);
+
 	setTimeout(() => {
 		setShow('show')
+		setDisplay('none')
+		setIsTimeout(true)
 		setTimeout(() => {
 			setShow('')
+			window.localStorage.removeItem('LOADING');
 			props.loading(false);
 		}, 3000);
-	}, 3000)
+	}, 22000)
+
+	const errorImg = () => (
+		<div>
+			<img src={errImg} alt='error' />
+		</div>
+	)
 
 	return (
 		<div className='scale' id='scale-loading'>
@@ -17,9 +30,11 @@ export default function Loading(props) {
 			<div
 				className='ld ld-ring ld-spin'
 				style={{
-					fontSize: '15.8em'
+					fontSize: '15.8em',
+					display: `${display}`
 				}}
 			></div>
+			{isTimeout ? errorImg() : null}
 		</div>
 	)
 }

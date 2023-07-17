@@ -32,7 +32,7 @@ export default function AddScaleList(props) {
 	}
 
 	const submitHandler = () => {
-		props.loading(true);
+		window.localStorage.setItem('LOADING', '')
 		setIsOpen(false)
 		const requestOptions = {
 			method: 'POST',

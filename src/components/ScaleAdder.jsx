@@ -13,7 +13,7 @@ export default function ScaleAdder(props) {
 		const port = document.getElementById('port')
 
 		if(ip.value !== '' && port.value!== '') {
-			props.loading(true)
+			window.localStorage.setItem('LOADING', '')
 		}
 
 		const requestOptions = {

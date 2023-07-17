@@ -45,43 +45,45 @@ app.post('/', (req, res) => {
         setInterval(() => {
             id = idTab[index]
             client.write('SIA\r\n');
-        }, 200);
+        }, 100);
         client.on('data', (result) => {
-            data = result.toString().trim();
-            weights[0] = data.slice(5, 15).replace(/\s+/g, '')
-            units[0] = data.slice(15, 19).replace(/\s+/g, '')
-            isStab[0] = data[3]
-            weights[1] = data.slice(25, 35).replace(/\s+/g, '')
-            units[1] = data.slice(35, 39).replace(/\s+/g, '')
-            isStab[1] = data[23]
-            weights[2] = data.slice(45, 55).replace(/\s+/g, '')
-            units[2] = data.slice(55, 59).replace(/\s+/g, '')
-            isStab[2] = data[43]
-            weights[3] = data.slice(65, 75).replace(/\s+/g, '')
-            units[3] = data.slice(75, 79).replace(/\s+/g, '')
-            isStab[3] = data[63]
-            temp = {
-                id: id,
-                ip: req.body.ip,
-                port: req.body.port,
-                Weighnings: [
-                    {id: 1, weight: weights[0], unit: units[0], isStab: isStab[0]},
-                    {id: 2, weight: weights[1], unit: units[1], isStab: isStab[1]},
-                    {id: 3, weight: weights[2], unit: units[2], isStab: isStab[2]},
-                    {id: 4, weight: weights[3], unit: units[3], isStab: isStab[3]}
-                ]
-            }
-            object.Scales[id-1] = temp;
             if(closeIp === ip && closePort === port){
+                object.Scales.pop();
                 client.destroy();
                 closeIp = null;
                 closePort = null;
                 delCount++;
-                object.Scales.pop();
                 for(let i = index; i < connectionCount; i++){
                     idTab[i] -= 1
                 }
                 console.log(`disconnected from ${req.body.ip}:${req.body.port}`)
+            }
+            else {
+                data = result.toString().trim();
+                weights[0] = data.slice(5, 15).replace(/\s+/g, '')
+                units[0] = data.slice(15, 19).replace(/\s+/g, '')
+                isStab[0] = data[3]
+                weights[1] = data.slice(25, 35).replace(/\s+/g, '')
+                units[1] = data.slice(35, 39).replace(/\s+/g, '')
+                isStab[1] = data[23]
+                weights[2] = data.slice(45, 55).replace(/\s+/g, '')
+                units[2] = data.slice(55, 59).replace(/\s+/g, '')
+                isStab[2] = data[43]
+                weights[3] = data.slice(65, 75).replace(/\s+/g, '')
+                units[3] = data.slice(75, 79).replace(/\s+/g, '')
+                isStab[3] = data[63]
+                temp = {
+                    id: id,
+                    ip: req.body.ip,
+                    port: req.body.port,
+                    Weighnings: [
+                        {id: 1, weight: weights[0], unit: units[0], isStab: isStab[0]},
+                        {id: 2, weight: weights[1], unit: units[1], isStab: isStab[1]},
+                        {id: 3, weight: weights[2], unit: units[2], isStab: isStab[2]},
+                        {id: 4, weight: weights[3], unit: units[3], isStab: isStab[3]}
+                    ]
+                }
+                object.Scales[id-1] = temp;
             }
         });
     });
@@ -94,7 +96,6 @@ app.post('/', (req, res) => {
 app.post('/update', (req, res) => {
     closeIp = req.body.ip;
     closePort = req.body.port;
-    object.Scales.pop();
     res.end();
 })
 
