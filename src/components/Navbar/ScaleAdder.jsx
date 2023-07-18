@@ -1,6 +1,6 @@
 import ReactModal from "react-modal";
 import {useState} from 'react'
-import '../styles/scaleadder.scss'
+import '../../styles/navbar-styles/scale-adder.scss'
 
 export default function ScaleAdder(props) {
 	const [isOpen, setIsOpen] = useState(false);

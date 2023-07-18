@@ -1,0 +1,22 @@
+.bookmark-option {
+  background-color: #f2f2f2;
+  color: #000;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  padding: 1.5em;
+}
+.bookmark-list {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 3;
+  font-size: 1.5em;
+}
+.bookmark-list h3 {
+  margin: 0;
+}
+.bookmark-list button {
+  margin: {
+    left: 0.25em;
+    right: 0.25em;
+  }
+}

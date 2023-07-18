@@ -21,7 +21,6 @@ let object = {
 //Strings
 let data = '';
 
-//Numbers
 let connectionCount = 0;
 let delCount = 0;
 
@@ -44,6 +43,10 @@ app.post('/', (req, res) => {
         let id = null;
         setInterval(() => {
             id = idTab[index]
+            // if(closeIp === ip && closePort === port) {
+            //     object.Scales.pop();
+            //
+            // }
             client.write('SIA\r\n');
         }, 100);
         client.on('data', (result) => {
