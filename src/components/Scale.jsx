@@ -108,7 +108,8 @@ export default function Scale(props) {
 				let localStorage = JSON.parse(window.localStorage.getItem('BOOKMARKS'));
 				localStorage.push({
 					ip: post.ip,
-					port: post.port
+					port: post.port,
+					name: 'NAME'
 				});
 				window.localStorage.setItem('BOOKMARKS', JSON.stringify(localStorage));
 				setBookmarked(true);
@@ -116,7 +117,7 @@ export default function Scale(props) {
 		}
 		else {
 			window.localStorage.setItem('BOOKMARKS', JSON.stringify([
-				{ip: post.ip, port: post.port}
+				{ip: post.ip, port: post.port, name: 'NAME'}
 			]))
 			setBookmarked(true);
 		}
@@ -135,6 +136,9 @@ export default function Scale(props) {
 				window.localStorage.setItem('CONNECTIONS', JSON.stringify(tempArr))
 			}
 		}
+	}, [])
+
+	useEffect(() => {
 		if('BOOKMARKS' in window.localStorage) {
 			const storageData = JSON.parse(window.localStorage.getItem('BOOKMARKS'))
 			for(let item of storageData) {
@@ -143,7 +147,7 @@ export default function Scale(props) {
 				}
 			}
 		}
-	}, [])
+	})
 
 	return (
 		<div className='scale'>

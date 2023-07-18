@@ -1,13 +1,36 @@
 import ReactModal from 'react-modal';
 import BookmarkItem from './BookmarkItem'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../../../styles/navbar-styles/bookmarks.scss'
 
-export default function Bookmarks() {
+export default function Bookmarks(props) {
 	const [isModalOpen, setIsOpen] = useState(false);
-	const [localStorage, setLocalStorage] = useState(JSON.parse(window.localStorage.getItem('BOOKMARKS')));
-
+	let localStorage = JSON.parse(window.localStorage.getItem('BOOKMARKS'));
+	const [isEmpty, setIsEmpty] = useState(true);
 	let i = 0;
+
+	const itemRender = () => {
+		return (
+			<>
+				{localStorage?.map(item => {
+					i++;
+					return (
+						<BookmarkItem key={i} item={item} setRender={props.setRender} count={props.count}/>
+					)
+				})}
+			</>
+		)
+	}
+
+	useEffect(() => {
+		if('BOOKMARKS' in window.localStorage) {
+			localStorage = JSON.parse(window.localStorage.getItem('BOOKMARKS'));
+			setIsEmpty(false);
+		}
+		else {
+			localStorage = [];
+		}
+	});
 
 	return (
 		<>
@@ -25,12 +48,7 @@ export default function Bookmarks() {
 				isOpen={isModalOpen}
 			>
 				<div className='bookmark-list' >
-					{localStorage.map(item => {
-						i++;
-						return (
-							<BookmarkItem key={i} item={item}/>
-						)
-					})}
+					{isEmpty ? null : itemRender()}
 				</div>
 				<button onClick={() => {setIsOpen(false)}}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

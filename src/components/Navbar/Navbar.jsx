@@ -18,7 +18,7 @@ export default function Navbar(props) {
 					count={props.count}
 					loading={props.loading}
 				/>
-				<Bookmarks />
+				<Bookmarks setRender={props.setRender} count={props.count}/>
 			</div>
 		</div>
 	)
