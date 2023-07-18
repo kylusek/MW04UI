@@ -10,9 +10,9 @@ export default function ScaleAdder(props) {
 	}
 	const clickHandler = () => {
 		const ip = document.getElementById('ip')
-		const port = document.getElementById('port')
+		//const port = document.getElementById('port')
 
-		if(ip.value !== '' && port.value!== '') {
+		if(ip.value !== '') {
 			window.localStorage.setItem('LOADING', '')
 		}
 
@@ -23,7 +23,7 @@ export default function ScaleAdder(props) {
 			},
 			body: JSON.stringify({
 				ip: ip.value,
-				port: port.value
+				port: 4001 //port.value
 			})
 		}
 
@@ -31,7 +31,7 @@ export default function ScaleAdder(props) {
 			.then(response => console.log(response))
 
 		ip.value = "";
-		port.value = "";
+		//port.value = "";
 
 		handleOpenModal();
 
@@ -66,8 +66,8 @@ export default function ScaleAdder(props) {
 					<div className='grid' >
 						<p>Ip: </p>
 						<input type='text' id='ip' placeholder='0.0.0.0' autoComplete='off'/>
-						<p>Port: </p>
-						<input type='text' id='port' placeholder='8080' autoComplete='off'/>
+						{/*<p>Port: </p>*/}
+						{/*<input type='text' id='port' placeholder='8080' autoComplete='off'/>*/}
 					</div>
 					<button onClick={() => {clickHandler()}}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

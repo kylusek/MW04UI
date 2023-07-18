@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
-import Weighnings from "./components/Weighnings";
+import Weighnings from "./components/MainContent/Weighnings";
 import {useEffect, useState} from "react";
 import './styles/main.scss'
 import './styles/responsive.scss'

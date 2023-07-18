@@ -3,9 +3,11 @@
 //Getting device name: str.slice(str.search('NAME=')+5, str.search('><SERIAL_NUMBER'))
 //Getting serial number: str.slice(str.search('NUMBER=')+7, str.search('><SOFTWARE_VERSION'))
 
-const arr = [{"ip":"10.10.2.148","port":"4001","name":"NAME"},{"ip":"127.0.0.1","port":"4002","name":"NAME"},{"ip":"10.10.9.173","port":"4001","name":"NAME"}]
+const data = 'p2'
 
-for(let items in arr) {
-    let i = items
-    console.log(i+1)
+if(parseFloat(data)) {
+    console.log('eee')
+}
+else {
+    console.log('aaa')
 }
