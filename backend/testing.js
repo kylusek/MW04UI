@@ -3,11 +3,6 @@
 //Getting device name: str.slice(str.search('NAME=')+5, str.search('><SERIAL_NUMBER'))
 //Getting serial number: str.slice(str.search('NUMBER=')+7, str.search('><SOFTWARE_VERSION'))
 
-const data = 'p2'
+const data = 'P1 ? -    0.0 g  ;P2          9.9 g  ;P3 v      0.000 kg ;P4 v      0.000 kg \n'
 
-if(parseFloat(data)) {
-    console.log('eee')
-}
-else {
-    console.log('aaa')
-}
+console.log(data.includes('0.0'))

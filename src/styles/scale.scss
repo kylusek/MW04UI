@@ -44,7 +44,7 @@ h3 {
 }
 .hGrid {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr;
+  grid-template-columns: 6fr 1fr;
   margin: {
     bottom: -0.5em;
     left: 0.5em;
@@ -52,7 +52,4 @@ h3 {
     top: 0;
   }
   padding: 0 0.5em 0.5em;
-}
-.bookmark-btn {
-  margin-right: 0.5em;
 }

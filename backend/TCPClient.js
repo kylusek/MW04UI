@@ -43,10 +43,6 @@ app.post('/', (req, res) => {
         let id = null;
         setInterval(() => {
             id = idTab[index]
-            // if(closeIp === ip && closePort === port) {
-            //     object.Scales.pop();
-            //
-            // }
             client.write('SIA\r\n');
         }, 100);
         client.on('data', (result) => {
@@ -63,23 +59,20 @@ app.post('/', (req, res) => {
             }
             else {
                 data = result.toString().trim();
-                weights[0] = data.slice(6, 15).replace(/\s+/g, '')
-                units[0] = data.slice(16, 19).replace(/\s+/g, '')
+                weights[0] = data.slice(5, 15).replace(/\s+/g, '')
+                units[0] = data.slice(15, 19).replace(/\s+/g, '')
                 isStab[0] = data[3]
-                weights[1] = data.slice(26, 35).replace(/\s+/g, '')
-                units[1] = data.slice(36, 39).replace(/\s+/g, '')
+                weights[1] = data.slice(25, 35).replace(/\s+/g, '')
+                units[1] = data.slice(35, 39).replace(/\s+/g, '')
                 isStab[1] = data[23]
-                weights[2] = data.slice(46, 55).replace(/\s+/g, '')
-                units[2] = data.slice(56, 59).replace(/\s+/g, '')
+                weights[2] = data.slice(45, 55).replace(/\s+/g, '')
+                units[2] = data.slice(55, 59).replace(/\s+/g, '')
                 isStab[2] = data[43]
-                weights[3] = data.slice(66, 75).replace(/\s+/g, '')
-                units[3] = data.slice(76, 79).replace(/\s+/g, '')
+                weights[3] = data.slice(65, 75).replace(/\s+/g, '')
+                units[3] = data.slice(75, 79).replace(/\s+/g, '')
                 isStab[3] = data[63]
                 for (let i=0; i<weights.length; i++) {
-                    if(parseFloat(weights[i])) {
-                        weights[i] = parseFloat(weights[i]);
-                    }
-                    else {
+                    if(!parseFloat(weights[i]) && !weights[i].includes('0.0')) {
                         weights[i] = '';
                     }
                 }
