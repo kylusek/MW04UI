@@ -1,4 +1,4 @@
-import '../../styles/snackbar.scss';
+import '../../styles/snackbar.sass';
 import {useState} from "react";
 import errImg from '../../assets/connection-error.png';
 

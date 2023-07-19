@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import ReactModal from "react-modal";
 import List from "./List";
-import '../../../styles/navbar-styles/add-scale-list.scss'
+import '../../../styles/navbar-styles/add-scale-list.sass'
 
 export default function AddScaleList(props) {
 	const [isOpen, setIsOpen] = useState(false);

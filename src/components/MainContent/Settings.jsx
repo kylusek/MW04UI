@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
 import { useState } from "react";
 import Input from "./Input";
-import '../../styles/settings.scss'
+import '../../styles/settings.sass'
 
 export default function Settings(props) {
     const [modalIsOpen, setIsOpen] = useState(false);

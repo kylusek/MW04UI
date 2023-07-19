@@ -1,4 +1,4 @@
-import '../../styles/navbar-styles/navbar.scss'
+import '../../styles/navbar-styles/navbar.sass'
 import AddScaleList from "./AddFromUDP/AddScaleList";
 import ScaleAdder from './ScaleAdder'
 

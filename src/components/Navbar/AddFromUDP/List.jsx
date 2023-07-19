@@ -1,4 +1,4 @@
-import '../../../styles/navbar-styles/list.scss';
+import '../../../styles/navbar-styles/list.sass';
 import ListOption from "./ListOption";
 
 export default function List(props) {

@@ -1,4 +1,4 @@
-import '../../styles/scale.scss';
+import '../../styles/scale.sass';
 import Platform from "./Platform";
 import { useEffect } from 'react';
 

@@ -1,4 +1,4 @@
-import '../../styles/platform.scss'
+import '../../styles/platform.sass'
 import {useEffect, useState} from "react";
 import Settings from "./Settings";
 import stability from "../../assets/Stability.png";

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import '../../styles/main.scss'
-import '../../styles/weighnings.scss'
+import '../../styles/main.sass'
+import '../../styles/weighnings.sass'
 import Scale from './Scale'
 import Loading from './Loading'
 

@@ -1,4 +1,4 @@
-import '../../styles/input.scss'
+import '../../styles/input.sass'
 import {useEffect, useState} from "react";
 export default function Input(props) {
 	const count = props.count;
