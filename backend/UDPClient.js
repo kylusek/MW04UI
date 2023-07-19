@@ -43,4 +43,12 @@ app.post('/', (req, res) => {
 
 app.listen(2001, () => {
     console.log('App is listening on port 2001');
+    client.send('REQREPLY_ALL\r\n', 6000, '10.10.255.255', (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('message sent');
+        }
+    })
 })
