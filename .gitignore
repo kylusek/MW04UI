@@ -21,6 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/backend/.idea/
 /backend/node_modules/
 /src/styles/loading.css
 /backend/server2.js
