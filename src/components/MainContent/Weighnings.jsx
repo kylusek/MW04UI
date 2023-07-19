@@ -5,7 +5,7 @@ import Scale from './Scale'
 import Loading from './Loading'
 
 export default function Weighnings(props) {
-	const [posts, setPosts] = useState([]);
+	const [posts, setPosts] = useState(null);
 	const [render, setRender] = useState(false);
 	const [scaleDelete, setDelete] = useState(false);
 	const [secRender, setSecRender] = useState(0);
@@ -37,6 +37,16 @@ export default function Weighnings(props) {
 					props.setCount(data.Scales.length)
 				}
 			})
+		if(posts !== null) {
+			for(let i=0; i<posts.Scales.length; i++) {
+				if(posts.Scales[i] === undefined) {
+					for(let j=i; j<posts.Scales.length; j++) {
+						posts.Scales[j] = posts.Scales[j+1];
+					}
+					posts.Scales.pop();
+				}
+			}
+		}
     })
 
 	const renderScales = () =>

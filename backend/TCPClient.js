@@ -105,6 +105,18 @@ app.post('/update', (req, res) => {
 
 app.get('/', (req, res) => {
     res.set('Content-Type', 'application/json');
+    if(object.Scales.length > 0) {
+        for (let i = 0; i < object.Scales.length; i++) {
+            if (object.Scales[i] === undefined) {
+                for(let j=i; j<object.Scales.length; j++) {
+                    object.Scales[j] = object.Scales[j+1];
+                    idTab[j] -= 1;
+                }
+                object.Scales.pop();
+                delCount++;
+            }
+        }
+    }
     res.send(JSON.stringify(object));
 })
 
