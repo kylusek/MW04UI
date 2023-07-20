@@ -23,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 /backend/.idea/
 /backend/node_modules/
-/src/styles/loading.css
 /backend/server2.js
 /backend/server1.js
 /backend/server3.js
