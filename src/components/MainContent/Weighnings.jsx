@@ -51,21 +51,27 @@ export default function Weighnings(props) {
 
 	const renderScales = () =>
 		(
-			posts.Scales?.map((post, i) =>
-				(
-					<>
-						{scaleDelete ? null : <Scale
-							key={post.id}
-							post={post}
-							count={i + 1}
-							delete={setDelete}
-							sCount={posts.Scales.length}
-							setRender={setSecRender}
-							setLoading={setLoading}
-						/>
-						}
-					</>
-				))
+			posts.Scales?.map((post, i) =>{
+				try {
+					return (
+						<>
+							{scaleDelete ? null : <Scale
+								key={post.id}
+								post={post}
+								count={i + 1}
+								delete={setDelete}
+								sCount={posts.Scales.length}
+								setRender={setSecRender}
+								setLoading={setLoading}
+							/>
+							}
+						</>
+					)
+				}
+				catch(err) {
+					console.log(err)
+				}
+			})
 		)
 
 	return (
