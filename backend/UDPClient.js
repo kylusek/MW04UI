@@ -13,13 +13,15 @@ app.use(express.json());
 client.on('message', (msg) => {
     let str = msg.toString();
     //if(str.includes('5Y')) {
+    if (!(addresses.list.includes(str.slice(24, str.search('><PORT_TCP'))) && addresses.list.includes(str.slice(str.search('NUMBER=') + 7, str.search('><SOFTWARE_VERSION'))))) {
         addresses.list.push({
             ip: str.slice(24, str.search('><PORT_TCP')),
-            port: str.slice(str.search('TCP')+4, str.search('><DEVICE_TYPE')),
-            name: str.slice(str.search('NAME=')+5, str.search('><SERIAL_NUMBER')),
-            serial: str.slice(str.search('NUMBER=')+7, str.search('><SOFTWARE_VERSION'))
+            port: str.slice(str.search('TCP') + 4, str.search('><DEVICE_TYPE')),
+            name: str.slice(str.search('NAME=') + 5, str.search('><SERIAL_NUMBER')),
+            serial: str.slice(str.search('NUMBER=') + 7, str.search('><SOFTWARE_VERSION'))
         })
-        app.get('/data', (req, res) => {
+    }
+    app.get('/data', (req, res) => {
             res.set('Content-Type', 'application/json')
             res.send(JSON.stringify(addresses))
         })
