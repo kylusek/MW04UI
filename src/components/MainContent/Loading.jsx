@@ -16,7 +16,7 @@ export default function Loading(props) {
 			window.localStorage.removeItem('LOADING');
 			props.loading(false);
 		}, 3000);
-	}, 22000)
+	}, 18000)
 
 	const errorImg = () => (
 		<div>
