@@ -37,3 +37,4 @@ yarn-error.log*
 /backend/server11.js
 /backend/testClient.js
 /backend/testing.js
+/src/styles/loading.css
